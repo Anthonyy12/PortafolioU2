@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
+import 'package:yes_no_app/presentation/providers/chat_provider.dart';
+import 'package:yes_no_app/presentation/widgets/chat/my_message.dart';
+import 'package:yes_no_app/presentation/widgets/chat/her_message.dart';
+import 'package:yes_no_app/presentation/widgets/shared/message_field_box.dart';
+
+void main() => runApp(const ChatScreen());
+
+class ChatScreen extends StatelessWidget {
+  const ChatScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: const Padding(
+          padding: EdgeInsets.all(4.0),
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(
+                'https://avatarfiles.alphacoders.com/375/375445.png'),
+          ),
+        ),
+        title: const Text('Usuario'),
+        centerTitle: false,
+      ),
+      body: const _ChatView(),
+    );
+  }
+}
+
+class _ChatView extends StatelessWidget {
+  const _ChatView();
+
+  @override
+  Widget build(BuildContext context) {
+    final chatProvider = context.watch<ChatProvider>();
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: chatProvider.messages.length,
+                itemBuilder: (context, index) {
+                  final message = chatProvider.messages[index];
+                  return (message.fromWho == FromWho.mine)
+                      ? MyMessages(text: message.text)
+                      : HerMessage(
+                          text: message.text, imageUrl: message.imageUrl);
+                },
+              ),
+            ),
+            const MessageFieldBox()
+          ],
+        ),
+      ),
+    );
+  }
+}
