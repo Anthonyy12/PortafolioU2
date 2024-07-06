@@ -113,12 +113,14 @@ Ejercicios del 09 al 15:
 
 ## Aplicación HelloWorld
   Resultado:
+  ![image](https://github.com/Anthonyy12/PortafolioU2/assets/114314723/2d5a1bf9-05e8-469e-9c6b-e92f4ab53f2b)
 
   Codigo:
   
 
 ## Aplicación YesOrNo
   Resultado:
+  ![image](https://github.com/Anthonyy12/PortafolioU2/assets/114314723/f9130939-b2c4-4346-97ab-eb8328d2ba48)
 
   Codigo:
   
